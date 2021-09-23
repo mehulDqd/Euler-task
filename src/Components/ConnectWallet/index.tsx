@@ -4,7 +4,7 @@ import _ from "lodash";
 import { useStyles } from "./styles";
 import { AppContext, ContextType } from "../../Context";
 
-const Login: React.FC = () => {
+const ConnectWallet: React.FC = () => {
   const styles = useStyles();
   const { handleUserLogin, userLoggedIn, userDetails, handleLogout } = useContext(AppContext) as ContextType;
   return (
@@ -22,4 +22,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default ConnectWallet;

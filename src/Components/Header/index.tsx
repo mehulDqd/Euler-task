@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { useStyles } from "./style";
-import Login from "../ConnectWallet";
+import ConnectWallet from "../ConnectWallet";
 
 const Header: React.FC = () => {
   const styles = useStyles();
   return (
     <div className={styles.header}>
       <div className={styles.logo} />
-      <Login />
+      <ConnectWallet />
     </div>
   );
 };
