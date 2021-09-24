@@ -1,18 +1,18 @@
 import { useContext } from "react";
 import { Box } from "@material-ui/core";
-import { AppContext, ContextType } from "../../Context";
+import { UserContext, ContextType } from "../../Context";
 import Dashboard from "../../Container/Dashboard";
 import Header from "../../Components/Header";
-import WalletNotConnected from "../../Container/WalletNotConnected";
 import { useStyles } from "./style";
 
 const Home = () => {
-  const { userDetails } = useContext(AppContext) as ContextType;
+  const { user } = useContext(UserContext) as ContextType;
   const styles = useStyles();
+  console.log(user);
   return (
     <Box className={styles.homePage}>
       <Header />
-      {!userDetails.address ? <WalletNotConnected /> : <Dashboard />}
+      <Dashboard />
     </Box>
   );
 };
