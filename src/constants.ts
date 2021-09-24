@@ -1,0 +1,9 @@
+export const daiContractAddress = "0xad6d458402f60fd3bd25163575031acdce07538d";
+export const decimals = 18;
+export const networkName = "ropsten";
+export const pairAddress = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D";
+export const gasPrice = 10e9;
+export const gasLimit = 10e5;
+export const getDataDelayTimer = 500;
+export const apiKey = "d44f7633-cf88-4e9d-867b-25d07d06ee12";
+export const networkId = 3;
