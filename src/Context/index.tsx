@@ -5,77 +5,68 @@ import {
   getUserTokenBalance,
 } from "../Utils/userTokenBalance";
 import { daiContractAddress, decimals } from "../constants";
-import { UserDetails } from "../Types/userDetails.interface";
-import CustomAlert from "../Components/Alert";
+import { User } from "../Types/user.interface";
 
 export type ContextType = {
   handleUserLogin(): void;
   handleLogout(): void;
-  userDetails: UserDetails;
-  getUserBalance(address: string): void;
+  user: User;
+  getUserBalance(address: User): void;
 };
 
-export const AppContext = React.createContext<ContextType | null>(null);
+export const UserContext = React.createContext<ContextType | null>(null);
 
-const AppProvider: React.FC<React.ReactNode> = ({ children }) => {
+const UserProvider: React.FC<React.ReactNode> = ({ children }) => {
   const onboard = onboardUser();
-  const [userDetails, setUserDetails] = useState<UserDetails>({
+  const initialUserState = {
     address: "",
     appNetworkId: 0,
-    balance: "",
-    daiBalance: "",
+    balance: "0",
+    daiBalance: "0",
     ethBalance: 0,
     mobileDevice: false,
     network: 0,
     wallet: {},
-  });
+  };
+  const [user, setUser] = useState<User>(initialUserState);
 
-  const getUserBalance = async (address: string) => {
+  const getUserBalance = async (details: User) => {
     const ethBalance = await getUserETHBalance();
     const daiBalance = await getUserTokenBalance(
-      address,
+      details.address,
       daiContractAddress,
       decimals
     );
-    setUserDetails({ ...userDetails, ethBalance, daiBalance });
+    const detail = details.address ? details : user;
+    setUser({ ...detail, ethBalance, daiBalance });
   };
 
   const handleUserLogin = async () => {
     if (onboard) {
-      await onboard.walletReset();
       await onboard.walletSelect();
-      if (!(await onboard.getState().address)) {
+      if (!onboard.getState().address) {
         await onboard.walletCheck();
       }
       const details = await onboard.getState();
-      setUserDetails(details);
-      await getUserBalance(details.address);
+      await getUserBalance(details);
+      setUser(details);
     }
   };
 
   const handleLogout = async () => {
     if (onboard) {
-      await onboard.walletReset();
-      setUserDetails({
-        address: "",
-        appNetworkId: 0,
-        balance: "",
-        daiBalance: "",
-        ethBalance: 0,
-        mobileDevice: false,
-        network: 0,
-        wallet: {},
-      });
+      onboard.walletReset();
+      setUser(initialUserState);
     }
   };
 
   return (
-    <AppContext.Provider
-      value={{ handleUserLogin, userDetails, handleLogout, getUserBalance }}
+    <UserContext.Provider
+      value={{ handleUserLogin, user, handleLogout, getUserBalance }}
     >
       {children}
-    </AppContext.Provider>
+    </UserContext.Provider>
   );
 };
 
-export default AppProvider;
+export default UserProvider;

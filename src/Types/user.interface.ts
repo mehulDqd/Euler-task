@@ -1,4 +1,4 @@
-export interface UserDetails {
+export interface User {
   address: string;
   appNetworkId: number;
   balance: string;
