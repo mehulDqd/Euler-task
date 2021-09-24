@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useStyles } from "./style";
 import ConnectWallet from "../ConnectWallet";
+import Box from "@material-ui/core/Box";
 
 const Header: React.FC = () => {
   const styles = useStyles();
   return (
-    <div className={styles.header}>
-      <div className={styles.logo} />
+    <Box className={styles.header}>
       <ConnectWallet />
-    </div>
+    </Box>
   );
 };
 

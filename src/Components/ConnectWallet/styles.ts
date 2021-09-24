@@ -1,10 +1,6 @@
-import {
-  Theme,
-  makeStyles
-} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
-// eslint-disable-next-line import/prefer-default-export
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
   LoginContainer: {
     boxShadow: "0 0 7px #ccc",
     width: "90%",
@@ -13,19 +9,17 @@ export const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
     justifyContent: "center",
     height: "80vh",
-    marginTop: "10vh"
+    marginTop: "10vh",
   },
   btn: {
     backgroundColor: "#653551",
     color: "#fff",
-    textTransform: "uppercase",
-    fontWeight: "bold",
     minWidth: "160px",
     border: "2px solid #fff",
 
     "&:hover": {
       color: "#653551",
-      backgroundColor: "#fff"
-    }
-  }
+      backgroundColor: "#fff",
+    },
+  },
 }));
