@@ -17,7 +17,8 @@ export const useStyles = makeStyles(() => ({
   },
   addressDescription: {
     margin: 0,
-    textOverflow: "elipsis",
+    textOverflow: "ellipsis",
+    overflow: "hidden",
     color: "#888",
   },
   balanceContainer: {
@@ -27,6 +28,7 @@ export const useStyles = makeStyles(() => ({
   },
   balanceDetails: {
     marginLeft: "25px",
-    textOverflow: "elipsis",
+    textOverflow: "ellipsis",
+    overflow: "hidden",
   },
 }));

@@ -5,16 +5,16 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Divider from "@material-ui/core/Divider";
 import React, { useContext } from "react";
 import { useStyles } from "./style";
-import { AppContext, ContextType } from "../../Context";
+import { UserContext, ContextType } from "../../Context";
 
 const WalletDetailsCard: React.FC = () => {
   const styles = useStyles();
-  const { userDetails } = useContext(AppContext) as ContextType;
+  const { user } = useContext(UserContext) as ContextType;
 
   return (
     <Box
       sx={{
-        width: { xs: "100%", lg: "40%" },
+        width: { xs: "100%", lg: "calc(25% - 80px)" },
         margin: { xs: "40px auto", lg: "0 40px" },
       }}
     >
@@ -24,7 +24,9 @@ const WalletDetailsCard: React.FC = () => {
         <CardContent>
           <Box className={styles.addressContainer}>
             <span className={styles.addressTitle}>Address: </span>
-            <p className={styles.addressDescription}>{userDetails.address}</p>
+            <p className={styles.addressDescription}>
+              {user.address ? user.address : "Please Connect Wallet"}
+            </p>
           </Box>
           <Box className={styles.balanceContainer}>
             <img
@@ -34,7 +36,9 @@ const WalletDetailsCard: React.FC = () => {
               alt="Etherium"
             />
             <Box component="span" className={styles.balanceDetails}>
-              {userDetails.ethBalance && userDetails.ethBalance.toFixed(5)} ETH
+              {user.ethBalance &&
+                parseFloat(user.ethBalance?.toString()).toFixed(5)}{" "}
+              ETH
             </Box>
           </Box>
           <Box className={styles.balanceContainer}>
@@ -45,9 +49,7 @@ const WalletDetailsCard: React.FC = () => {
               alt="Etherium"
             />
             <Box component="span" className={styles.balanceDetails}>
-              {userDetails.daiBalance &&
-                parseFloat(userDetails.daiBalance).toFixed(5)}{" "}
-              DAI
+              {user.daiBalance && parseFloat(user.daiBalance).toFixed(5)} DAI
             </Box>
           </Box>
         </CardContent>
