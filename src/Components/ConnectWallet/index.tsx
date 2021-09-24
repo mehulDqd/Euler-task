@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
+import { UserContext, ContextType } from "../../Context";
 import { useStyles } from "./styles";
-import { AppContext, ContextType } from "../../Context";
 
 const ConnectWallet: React.FC = () => {
   const styles = useStyles();
-  const { handleUserLogin, userDetails, handleLogout } = useContext(
-    AppContext
+  const { handleUserLogin, user, handleLogout } = useContext(
+    UserContext
   ) as ContextType;
   return (
     <Box>
-      {userDetails.address ? (
+      {user.address ? (
         <Button
           variant="contained"
           onClick={handleLogout}

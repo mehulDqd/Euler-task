@@ -1,7 +1,7 @@
 import React from "react";
-import { useStyles } from "./style";
-import ConnectWallet from "../ConnectWallet";
 import Box from "@material-ui/core/Box";
+import ConnectWallet from "../ConnectWallet";
+import { useStyles } from "./style";
 
 const Header: React.FC = () => {
   const styles = useStyles();
