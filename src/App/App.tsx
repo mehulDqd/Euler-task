@@ -1,10 +1,10 @@
-import AppProvider from "../Context";
+import UserProvider from "../Context";
 import Home from "../Pages/Home";
 
 const App = () => (
-  <AppProvider>
+  <UserProvider>
     <Home />
-  </AppProvider>
+  </UserProvider>
 );
 
 export default App;
