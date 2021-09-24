@@ -1,20 +1,8 @@
-import { BigNumber, ethers } from "ethers";
+import { ethers } from "ethers";
 import ERC20ABI from "../ABI/ERC20.json";
+import { numberFromWei } from "./tokenConversions";
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-export const numberFromWei = (number: number | BigNumber, decimals: number) => {
-  let numberFromWeiS;
-
-  if (decimals === 18) {
-    numberFromWeiS = ethers.utils.formatUnits(number, "ether");
-  }
-
-  if (decimals === 6) {
-    numberFromWeiS = ethers.utils.formatUnits(number, "mwei");
-  }
-  return numberFromWeiS;
-};
 
 export const getUserTokenBalance = async (
   userAddress: string,

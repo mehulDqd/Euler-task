@@ -1,6 +1,6 @@
 import Onboard from "bnc-onboard";
 import Web3 from "web3";
-import { apiKey, networkId } from "../constants";
+import { apiKey, networkId, wallets } from "../constants";
 
 const onboardUser = () => {
   try {
@@ -9,7 +9,7 @@ const onboardUser = () => {
       dappId: apiKey,
       networkId,
       walletSelect: {
-        wallets: [{ walletName: "metamask" }],
+        wallets,
       },
       subscriptions: {
         wallet: (wallet: { provider: any }) => {
