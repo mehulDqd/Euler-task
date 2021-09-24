@@ -1,8 +1,9 @@
 import React from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
+import Typography from "@material-ui/core/Typography";
 import { Route, Trade } from "@uniswap/sdk";
+import { useStyles } from "./style";
 
 interface Props {
   route: Route | undefined;
@@ -10,35 +11,32 @@ interface Props {
 }
 
 const SwapInformation: React.FC<Props> = ({ route, trade }) => {
+  const styles = useStyles();
   return (
     <List>
-      <ListItem>
-        <ListItemText
-          primary={`Mid Price: ${
-            route?.midPrice ? route?.midPrice?.toSignificant(6) : "0"
-          }`}
-        />
+      <ListItem className={styles.listContent}>
+        <Typography display="block" className={styles.listContentTitle}>
+          Mid Price:
+        </Typography>{" "}
+        {route?.midPrice ? route?.midPrice?.toSignificant(6) : "0"}
       </ListItem>
-      <ListItem>
-        <ListItemText
-          primary={`Mid Invert: ${
-            route?.midPrice ? route?.midPrice?.invert().toSignificant(6) : "0"
-          }`}
-        />
+      <ListItem className={styles.listContent}>
+        <Typography display="block" className={styles.listContentTitle}>
+          Mid Invert:
+        </Typography>{" "}
+        {route?.midPrice ? route?.midPrice?.invert().toSignificant(6) : "0"}
       </ListItem>
-      <ListItem>
-        <ListItemText
-          primary={`Trade Execution Price: ${
-            trade?.executionPrice ? trade.executionPrice?.toSignificant(6) : "0"
-          }`}
-        />
+      <ListItem className={styles.listContent}>
+        <Typography display="block" className={styles.listContentTitle}>
+          Trade Execution Price:
+        </Typography>{" "}
+        {trade?.executionPrice ? trade.executionPrice?.toSignificant(6) : "0"}
       </ListItem>
-      <ListItem>
-        <ListItemText
-          primary={`Trade Mid Price: ${
-            trade?.nextMidPrice ? trade.nextMidPrice.toSignificant(6) : "0"
-          }`}
-        />
+      <ListItem className={styles.listContent}>
+        <Typography display="block" className={styles.listContentTitle}>
+          Trade Mid Price:
+        </Typography>{" "}
+        {trade?.nextMidPrice ? trade.nextMidPrice.toSignificant(6) : "0"}
       </ListItem>
     </List>
   );

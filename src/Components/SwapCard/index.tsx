@@ -7,13 +7,13 @@ import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { Route, Trade } from "@uniswap/sdk";
-import { ethers } from "ethers";
 import { debounce } from "lodash";
-import { PricingData } from "../../Types/SwapCard.interface";
 import SwapInformation from "../SwapInformation";
+import { PricingData } from "../../Types/SwapCard.interface";
 import { getPricingData, swapTokens } from "../../Utils/swapTransaction";
-import { AppContext, ContextType } from "../../Context";
+import { handleValidation } from "../../Utils/validation";
 import { getDataDelayTimer } from "../../constants";
+import { UserContext, ContextType } from "../../Context";
 import { useStyles } from "./style";
 
 const SwapCard: React.FC = () => {
@@ -22,24 +22,21 @@ const SwapCard: React.FC = () => {
   const [trade, setTrade] = useState<Trade>();
   const [error, setError] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>("");
-  const { userDetails, getUserBalance } = useContext(AppContext) as ContextType;
   const [amount, setAmount] = useState<string>("");
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
+
+  const { user, getUserBalance } = useContext(UserContext) as ContextType;
 
   const handleChange = async (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    console.log(user);
     setAmount(e.target.value);
-    if (!e.target.value) {
+    const isError = handleValidation(e.target.value, user.balance);
+    if (isError) {
       setError(true);
-      setErrorText("This field is required");
-    } else if (+e.target.value <= 0) {
-      setError(true);
-      setErrorText("Value should be positive");
-    } else if (
-      userDetails.balance >
-      ethers.utils.parseEther(e.target.value.toString()).toString()
-    ) {
+      setErrorText(isError);
+    } else {
       setError(false);
       setErrorText("");
       const { route, trade }: PricingData = await getPricingData(
@@ -48,9 +45,6 @@ const SwapCard: React.FC = () => {
       setRoute(route);
       setTrade(trade);
       setButtonDisabled(false);
-    } else {
-      setError(true);
-      setErrorText("Insufficient Balance");
     }
   };
 
@@ -58,15 +52,15 @@ const SwapCard: React.FC = () => {
 
   const handleSwapToken = async () => {
     setButtonDisabled(true);
-    await swapTokens(amount, userDetails.address);
-    getUserBalance(userDetails.address);
+    await swapTokens(amount, user.address);
+    getUserBalance(user);
     setButtonDisabled(false);
   };
 
   return (
     <Box
       sx={{
-        width: { xs: "100%", lg: "40%" },
+        width: { xs: "100%", lg: "calc(25% - 80px)" },
         margin: { xs: "40px auto", lg: "0 40px" },
       }}
     >
@@ -74,20 +68,21 @@ const SwapCard: React.FC = () => {
         <CardContent>
           <Box className={styles.inputContainer}>
             <TextField
-              inputProps={{ min: 0 }}
-              id="outlined-basic"
-              error={error}
-              fullWidth
-              type="number"
-              helperText={errorText}
               label="Ethereum To Swap"
               variant="outlined"
+              id="outlined-basic"
+              type="number"
+              fullWidth
+              inputProps={{ min: 0 }}
+              error={error}
+              helperText={errorText}
               onChange={getData}
+              disabled={!user.address}
             />
             <Button
               variant="contained"
-              disabled={error || buttonDisabled}
               className={styles.btn}
+              disabled={error || buttonDisabled}
               onClick={handleSwapToken}
             >
               Swap To DAI
