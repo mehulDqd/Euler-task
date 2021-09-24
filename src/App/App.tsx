@@ -1,6 +1,5 @@
-import React from "react";
-import AppProvider, { AppContext } from "../Context";
-import Home from "../Pages/Home/home";
+import AppProvider from "../Context";
+import Home from "../Pages/Home";
 
 const App = () => (
   <AppProvider>
