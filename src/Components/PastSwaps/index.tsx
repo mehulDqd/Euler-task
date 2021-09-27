@@ -20,48 +20,49 @@ const PastSwaps: React.FC<Props> = ({ data }) => {
         swapData.map((item, index) => (
           <Box key={item.id}>
             <Box className={styles.listContent}>
-              <Typography
-                display="block"
-                fontWeight="600"
-                className={styles.listContentTitle}
-              >
+              <Typography className={styles.listContentTitle}>
                 Sender:
-              </Typography>{" "}
-              {item.sender}
+              </Typography>
+              <Typography className={styles.listContentDesc}>
+                {item.sender}
+              </Typography>
             </Box>
             <Box className={styles.listContent}>
               <Typography
-                display="block"
-                fontWeight="600"
                 className={styles.listContentTitle}
+                variant="subtitle2"
               >
-                Reciever:{" "}
-              </Typography>{" "}
-              {item.to}
+                Reciever:
+              </Typography>
+              <Typography className={styles.listContentDesc}>
+                {item.to}
+              </Typography>
             </Box>
             <Box className={styles.listContent}>
               <Typography
-                display="block"
-                fontWeight="600"
                 className={styles.listContentTitle}
+                variant="subtitle2"
               >
                 Amount In:
-              </Typography>{" "}
-              {!item.amount1In
-                ? parseFloat(item.amount0In).toFixed(5)
-                : parseFloat(item.amount1In).toFixed(5)}
+              </Typography>
+              <Typography className={styles.listContentDesc}>
+                {!item.amount1In
+                  ? parseFloat(item.amount0In).toFixed(5)
+                  : parseFloat(item.amount1In).toFixed(5)}
+              </Typography>
             </Box>
             <Box className={styles.listContent}>
               <Typography
-                display="block"
-                fontWeight="600"
                 className={styles.listContentTitle}
+                variant="subtitle2"
               >
                 Amount Out:
               </Typography>
-              {!item.amount1Out
-                ? parseFloat(item.amount0Out).toFixed(5)
-                : parseFloat(item.amount1Out).toFixed(5)}
+              <Typography className={styles.listContentDesc}>
+                {!item.amount1Out
+                  ? parseFloat(item.amount0Out).toFixed(5)
+                  : parseFloat(item.amount1Out).toFixed(5)}
+              </Typography>
             </Box>
             <Divider />
           </Box>

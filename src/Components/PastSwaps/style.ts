@@ -1,6 +1,6 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { Theme, makeStyles } from "@material-ui/core/styles";
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme: Theme) => ({
   pastSwapsContainer: {
     maxHeight: "400px",
     overflowY: "scroll",
@@ -8,10 +8,23 @@ export const useStyles = makeStyles(() => ({
   listContent: {
     fontSize: "14px",
     display: "flex",
+    flexWrap: "wrap",
   },
   listContentTitle: {
-    width: "20%",
+    width: "100%",
     fontWeight: 600,
+    display: "block",
+    [theme.breakpoints.up("md")]: {
+      width: "20%",
+    },
+  },
+  listContentDesc: {
+    width: "100%",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    [theme.breakpoints.up("md")]: {
+      width: "80%",
+    },
   },
   loadingContainer: {
     display: "flex",
