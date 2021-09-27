@@ -1,5 +1,5 @@
 import Box from "@material-ui/core/Box";
-import React from "react";
+import React, { useMemo } from "react";
 import {
   Tooltip,
   Legend,
@@ -17,17 +17,22 @@ interface Props {
 }
 
 const DailyDataGraph: React.FC<Props> = ({ data }) => {
-  const graphData = data
-    ?.map((item, index) => {
-      return {
-        name: moment(item.date * 1000)
-          .toISOString()
-          .split("T")[0],
-        value: parseFloat(item.dailyVolumeUSD),
-      };
-    })
-    .filter((item, index) => index % 7 === 0)
-    .reverse();
+  const graphData = useMemo(
+    () =>
+      data
+        ?.map((item) => {
+          return {
+            name: moment(item.date * 1000)
+              .toISOString()
+              .split("T")[0],
+            value: parseFloat(item.dailyVolumeUSD),
+          };
+        })
+        .filter((item, index) => index % 7 === 0)
+        .reverse(),
+    [data]
+  );
+
   return (
     <Box>
       <ResponsiveContainer width="100%" height={400}>
@@ -42,15 +47,14 @@ const DailyDataGraph: React.FC<Props> = ({ data }) => {
             bottom: 5,
           }}
         >
-          <XAxis dataKey="name" />
-          <YAxis />
+          <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+          <YAxis tick={{ fontSize: 12 }} />
           <Tooltip />
-          <Legend />
           <Area
             type="monotone"
             dataKey="value"
-            stroke="#8884d8"
-            fill="#8884d8"
+            stroke="#653551"
+            fill="#653551"
           />
         </AreaChart>
       </ResponsiveContainer>
