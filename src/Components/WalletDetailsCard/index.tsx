@@ -12,12 +12,7 @@ const WalletDetailsCard: React.FC = () => {
   const { user } = useContext(UserContext) as ContextType;
 
   return (
-    <Box
-      sx={{
-        width: { xs: "100%", lg: "calc(25% - 80px)" },
-        margin: { xs: "40px auto", lg: "0 40px" },
-      }}
-    >
+    <Box className={styles.container}>
       <Card className={styles.card} variant="outlined">
         <CardHeader title="Account Details" className={styles.header} />
         <Divider />
@@ -31,22 +26,18 @@ const WalletDetailsCard: React.FC = () => {
           <Box className={styles.balanceContainer}>
             <img
               src={`${process.env.PUBLIC_URL}ethereum.png`}
-              width="30px"
-              height="30px"
+              className={styles.currencySymbol}
               alt="Etherium"
             />
             <Box component="span" className={styles.balanceDetails}>
-              {user.ethBalance &&
-                parseFloat(user.ethBalance?.toString()).toFixed(5)}{" "}
-              ETH
+              {user.ethBalance && parseFloat(user.ethBalance).toFixed(5)} ETH
             </Box>
           </Box>
           <Box className={styles.balanceContainer}>
             <img
               src={`${process.env.PUBLIC_URL}dai.png`}
-              width="30px"
-              height="30px"
-              alt="Etherium"
+              className={styles.currencySymbol}
+              alt="DAI"
             />
             <Box component="span" className={styles.balanceDetails}>
               {user.daiBalance && parseFloat(user.daiBalance).toFixed(5)} DAI

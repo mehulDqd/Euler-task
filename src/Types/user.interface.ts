@@ -3,7 +3,7 @@ export interface User {
   appNetworkId: number;
   balance: string;
   daiBalance?: string;
-  ethBalance?: number;
+  ethBalance?: string;
   mobileDevice: boolean;
   network: number;
   wallet: object;
