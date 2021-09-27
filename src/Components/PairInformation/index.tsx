@@ -17,10 +17,11 @@ import { GraphData } from "../../Types/graphData.interface";
 import { PairData } from "../../Types/PairData.interface";
 import { PastSwap } from "../../Types/PastSwap.interface";
 import { useStyles } from "./style";
+import { tabContents } from "../../constants";
 
 const PairInformation: React.FC = () => {
   const styles = useStyles();
-  const [value, setValue] = useState("pairOverview");
+  const [activeTab, setActiveTab] = useState("pairOverview");
   const [graphData, setGraphData] = useState<Array<GraphData>>([]);
   const [pairData, setPairData] = useState<PairData>();
   const [swapData, setSwapData] = useState<Array<PastSwap>>([]);
@@ -38,61 +39,46 @@ const PairInformation: React.FC = () => {
     getGraphData();
   }, []);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
+  const handleChange = (event: React.SyntheticEvent, value: string) => {
+    setActiveTab(value);
   };
 
   return (
-    <Box
-      sx={{
-        width: { xs: "100%", lg: "calc(50% - 80px)" },
-        margin: { xs: "40px auto", lg: "0 40px" },
-      }}
-    >
+    <Box className={styles.container}>
       <Card className={styles.card}>
-        <TabContext value={value}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <TabContext value={activeTab}>
+          <Box className={styles.tabContainer}>
             <TabList
               onChange={handleChange}
-              aria-label="Paid details options"
+              aria-label={tabContents.label}
               variant="fullWidth"
               TabIndicatorProps={{
-                style: { background: "#653551", color: "#653551" },
+                style: { background: "#653551" },
               }}
-              style={{ color: "#653551" }}
             >
-              <Tab
-                className={
-                  value === "pairOverview"
-                    ? styles.activeTab
-                    : styles.inActiveTab
-                }
-                label="Pair Overview"
-                value="pairOverview"
-              />
-              <Tab
-                className={
-                  value === "dailyData" ? styles.activeTab : styles.inActiveTab
-                }
-                label="Daily Data"
-                value="dailyData"
-              />
-              <Tab
-                className={
-                  value === "pastSwaps" ? styles.activeTab : styles.inActiveTab
-                }
-                label="past Swaps"
-                value="pastSwaps"
-              />
+              {tabContents.content.map((item) => {
+                return (
+                  <Tab
+                    key={item.value}
+                    className={
+                      activeTab === item.value
+                        ? styles.activeTab
+                        : styles.inActiveTab
+                    }
+                    label={item.label}
+                    value={item.value}
+                  />
+                );
+              })}
             </TabList>
           </Box>
-          <TabPanel value="pairOverview">
+          <TabPanel value={tabContents.content[0].value}>
             <PairOverview data={pairData} />
           </TabPanel>
-          <TabPanel value="dailyData">
+          <TabPanel value={tabContents.content[1].value}>
             <DailyDataGraph data={graphData} />
           </TabPanel>
-          <TabPanel value="pastSwaps">
+          <TabPanel value={tabContents.content[2].value}>
             <PastSwaps data={swapData} />
           </TabPanel>
         </TabContext>
