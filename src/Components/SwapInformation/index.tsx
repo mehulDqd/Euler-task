@@ -15,25 +15,21 @@ const SwapInformation: React.FC<Props> = ({ route, trade }) => {
   return (
     <List>
       <ListItem className={styles.listContent}>
-        <Typography display="block" className={styles.listContentTitle}>
-          Mid Price:
-        </Typography>{" "}
+        <Typography className={styles.listContentTitle}>Mid Price:</Typography>{" "}
         {route?.midPrice ? route?.midPrice?.toSignificant(6) : "0"}
       </ListItem>
       <ListItem className={styles.listContent}>
-        <Typography display="block" className={styles.listContentTitle}>
-          Mid Invert:
-        </Typography>{" "}
+        <Typography className={styles.listContentTitle}>Mid Invert:</Typography>{" "}
         {route?.midPrice ? route?.midPrice?.invert().toSignificant(6) : "0"}
       </ListItem>
       <ListItem className={styles.listContent}>
-        <Typography display="block" className={styles.listContentTitle}>
+        <Typography className={styles.listContentTitle}>
           Trade Execution Price:
         </Typography>{" "}
         {trade?.executionPrice ? trade.executionPrice?.toSignificant(6) : "0"}
       </ListItem>
       <ListItem className={styles.listContent}>
-        <Typography display="block" className={styles.listContentTitle}>
+        <Typography className={styles.listContentTitle}>
           Trade Mid Price:
         </Typography>{" "}
         {trade?.nextMidPrice ? trade.nextMidPrice.toSignificant(6) : "0"}

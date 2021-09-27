@@ -30,9 +30,8 @@ const SwapCard: React.FC = () => {
   const handleChange = async (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    console.log(user);
     setAmount(e.target.value);
-    const isError = handleValidation(e.target.value, user.balance);
+    const isError = handleValidation(e.target.value, user.ethBalance);
     if (isError) {
       setError(true);
       setErrorText(isError);
@@ -58,12 +57,7 @@ const SwapCard: React.FC = () => {
   };
 
   return (
-    <Box
-      sx={{
-        width: { xs: "100%", lg: "calc(25% - 80px)" },
-        margin: { xs: "40px auto", lg: "0 40px" },
-      }}
-    >
+    <Box className={styles.container}>
       <Card className={styles.card} variant="outlined">
         <CardContent>
           <Box className={styles.inputContainer}>
