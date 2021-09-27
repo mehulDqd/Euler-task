@@ -1,4 +1,4 @@
-import UserProvider from "../Context";
+import { UserProvider } from "../Context";
 import Home from "../Pages/Home";
 
 const App = () => (
