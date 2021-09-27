@@ -8,6 +8,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: "calc(50% - 80px)",
       margin: "0 40px",
     },
+    height: "calc(100vh - 180px)",
+  },
+  panelContainer: {
+    height: "calc(100% - 96px)",
   },
   card: {
     height: "100%",

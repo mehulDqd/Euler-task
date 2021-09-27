@@ -72,13 +72,22 @@ const PairInformation: React.FC = () => {
               })}
             </TabList>
           </Box>
-          <TabPanel value={tabContents.content[0].value}>
+          <TabPanel
+            className={styles.panelContainer}
+            value={tabContents.content[0].value}
+          >
             <PairOverview data={pairData} />
           </TabPanel>
-          <TabPanel value={tabContents.content[1].value}>
+          <TabPanel
+            className={styles.panelContainer}
+            value={tabContents.content[1].value}
+          >
             <DailyDataGraph data={graphData} />
           </TabPanel>
-          <TabPanel value={tabContents.content[2].value}>
+          <TabPanel
+            className={styles.panelContainer}
+            value={tabContents.content[2].value}
+          >
             <PastSwaps data={swapData} />
           </TabPanel>
         </TabContext>
