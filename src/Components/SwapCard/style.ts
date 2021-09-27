@@ -8,10 +8,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: "calc(25% - 80px)",
       margin: "0 40px",
     },
+    height: "380px",
   },
   card: {
-    height: "100%",
     margin: "auto",
+    height: "100%",
   },
   inputContainer: {
     display: "flex",
