@@ -8,7 +8,6 @@ import { useStyles } from "./style";
 const Home = () => {
   const { user } = useContext(UserContext) as ContextType;
   const styles = useStyles();
-  console.log(user);
   return (
     <Box className={styles.homePage}>
       <Header />
