@@ -1,11 +1,11 @@
+import React, { useContext } from "react";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 import Divider from "@material-ui/core/Divider";
-import React, { useContext } from "react";
-import { useStyles } from "./style";
 import { UserContext, ContextType } from "../../Context";
+import { useStyles } from "./style";
 
 const WalletDetailsCard: React.FC = () => {
   const styles = useStyles();
