@@ -7,7 +7,7 @@ import { useStyles } from "./style";
 const Dashboard = () => {
   const styles = useStyles();
   return (
-    <Box sx={{ margin: "100px auto" }} className={styles.walletContent}>
+    <Box className={styles.walletContent}>
       <WalletDetailsCard />
       <PairInformation />
       <SwapCard />
