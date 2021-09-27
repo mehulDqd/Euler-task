@@ -10,13 +10,7 @@ import {
   TradeType,
 } from "@uniswap/sdk";
 import { ethers } from "ethers";
-import {
-  daiContractAddress,
-  pairAddress,
-  gasPrice,
-  gasLimit,
-  networkId,
-} from "../constants";
+import { daiContractAddress, pairAddress, networkId } from "../constants";
 import routerABI from "../ABI/UniswapRouter.json";
 import { ExternalProvider, JsonRpcFetchFunc } from "@ethersproject/providers";
 
@@ -63,8 +57,6 @@ export const swapTokens = async (amount: string, userAddress: String) => {
       deadline,
       {
         value,
-        gasPrice,
-        gasLimit,
       }
     );
     await tx.wait();

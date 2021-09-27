@@ -7,7 +7,7 @@ const provider = new ethers.providers.Web3Provider(window.ethereum);
 export const getUserTokenBalance = async (
   userAddress: string,
   tokenAddress: string,
-  tokenDecimals: number
+  tokenDecimals: string
 ) => {
   const contract = new ethers.Contract(tokenAddress, ERC20ABI, provider);
 
@@ -18,15 +18,15 @@ export const getUserTokenBalance = async (
 };
 
 export const getUserETHBalance = async () => {
-  let ethBalance = 0;
+  let ethBalance = "0";
 
   if (provider !== null) {
     try {
       const signer = provider.getSigner();
-      ethBalance = Number(ethers.utils.formatEther(await signer.getBalance()));
+      ethBalance = ethers.utils.formatEther(await signer.getBalance());
     } catch (error) {
       console.log(error);
-      ethBalance = 0;
+      ethBalance = "0";
     }
   }
 

@@ -1,15 +1,20 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { ethers } from "ethers";
+import { ether, unit } from "../constants";
 
-export const numberFromWei = (number: number | BigNumber, decimals: number) => {
+export const numberFromWei = (number: number | BigNumber, decimals: string) => {
   let numberFromWeiS;
+  switch (decimals) {
+    case "18":
+      numberFromWeiS = ethers.utils.formatUnits(number, ether).toString();
+      break;
 
-  if (decimals === 18) {
-    numberFromWeiS = ethers.utils.formatUnits(number, "ether");
-  }
+    case "6":
+      numberFromWeiS = ethers.utils.formatUnits(number, unit).toString();
+      break;
 
-  if (decimals === 6) {
-    numberFromWeiS = ethers.utils.formatUnits(number, "mwei");
+    default:
+      break;
   }
   return numberFromWeiS;
 };

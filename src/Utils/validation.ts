@@ -5,18 +5,13 @@ export const handleValidation = (
   balance: string | undefined
 ) => {
   let errorsMessage: string = "";
-
   if (!amount) {
     errorsMessage = "Cannot Be Empty";
   }
   if (!(+amount > 0)) {
     errorsMessage = "Value should be positive";
   }
-  if (
-    balance &&
-    +amount > 0 &&
-    +balance < +ethers.utils.parseEther(amount).toString()
-  ) {
+  if (balance && +amount > 0 && +balance < +amount.toString()) {
     errorsMessage = "Insufficient Balance";
   }
 
