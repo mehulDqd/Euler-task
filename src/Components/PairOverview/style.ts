@@ -1,6 +1,10 @@
 import { Theme, makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
+  container: {
+    height: "100%",
+    overflowY: "auto",
+  },
   listContent: {
     fontSize: "14px",
     flexWrap: "wrap",

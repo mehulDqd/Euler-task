@@ -14,7 +14,7 @@ interface Props {
 const PairOverview: React.FC<Props> = ({ data }) => {
   const styles = useStyles();
   return (
-    <Box>
+    <Box className={styles.container}>
       {data ? (
         <List>
           <ListItem className={styles.listContent}>
