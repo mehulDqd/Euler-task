@@ -21,6 +21,7 @@
     "@types/react-dom": "^17.0.9",
     "@uniswap/sdk": "^3.0.3",
     "bnc-onboard": "^1.34.2",
+    "graphql": "^15.6.0",
     "ethers": "^5.4.7",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
