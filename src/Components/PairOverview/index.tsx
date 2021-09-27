@@ -18,52 +18,68 @@ const PairOverview: React.FC<Props> = ({ data }) => {
       {data ? (
         <List>
           <ListItem className={styles.listContent}>
-            <Typography display="block" className={styles.listContentTitle}>
-              Token 1 Name:{" "}
-            </Typography>{" "}
-            {data?.token0?.name}
+            <Typography className={styles.listContentTitle}>
+              Token 1 Name:
+            </Typography>
+            <Typography className={styles.listContentDesc}>
+              {data?.token0?.name}
+            </Typography>
           </ListItem>
           <ListItem className={styles.listContent}>
-            <Typography display="block" className={styles.listContentTitle}>
-              Token 1 symbol:{" "}
-            </Typography>{" "}
-            {data?.token0?.symbol}
+            <Typography className={styles.listContentTitle}>
+              Token 1 symbol:
+            </Typography>
+            <Typography className={styles.listContentDesc}>
+              {data?.token0?.symbol}
+            </Typography>
           </ListItem>
           <ListItem className={styles.listContent}>
-            <Typography display="block" className={styles.listContentTitle}>
-              Token 2 Name:{" "}
-            </Typography>{" "}
-            {data.token1.name}
+            <Typography className={styles.listContentTitle}>
+              Token 2 Name:
+            </Typography>
+            <Typography className={styles.listContentDesc}>
+              {data.token1.name}
+            </Typography>
           </ListItem>
           <ListItem className={styles.listContent}>
-            <Typography display="block" className={styles.listContentTitle}>
-              Token 2 Symbol:{" "}
-            </Typography>{" "}
-            {data.token1.symbol}
+            <Typography className={styles.listContentTitle}>
+              Token 2 Symbol:
+            </Typography>
+            <Typography className={styles.listContentDesc}>
+              {data.token1.symbol}
+            </Typography>
           </ListItem>
           <ListItem className={styles.listContent}>
-            <Typography display="block" className={styles.listContentTitle}>
-              Reserved In ETH:{" "}
-            </Typography>{" "}
-            {parseFloat(data.reserveETH).toFixed(5)}
+            <Typography className={styles.listContentTitle}>
+              Reserved In ETH:
+            </Typography>
+            <Typography className={styles.listContentDesc}>
+              {parseFloat(data.reserveETH).toFixed(5)}
+            </Typography>
           </ListItem>
           <ListItem className={styles.listContent}>
-            <Typography display="block" className={styles.listContentTitle}>
-              Reserved in USD:{" "}
-            </Typography>{" "}
-            {parseFloat(data.reserveUSD).toFixed(5)}
+            <Typography className={styles.listContentTitle}>
+              Reserved in USD:
+            </Typography>
+            <Typography className={styles.listContentDesc}>
+              {parseFloat(data.reserveUSD).toFixed(5)}
+            </Typography>
           </ListItem>
           <ListItem className={styles.listContent}>
-            <Typography display="block" className={styles.listContentTitle}>
-              Total Supply:{" "}
-            </Typography>{" "}
-            {parseFloat(data.totalSupply).toFixed(5)}
+            <Typography className={styles.listContentTitle}>
+              Total Supply:
+            </Typography>
+            <Typography className={styles.listContentDesc}>
+              {parseFloat(data.totalSupply).toFixed(5)}
+            </Typography>
           </ListItem>
           <ListItem className={styles.listContent}>
-            <Typography display="block" className={styles.listContentTitle}>
-              Total Volume in USD:{" "}
-            </Typography>{" "}
-            {parseFloat(data.volumeUSD).toFixed(5)}
+            <Typography className={styles.listContentTitle}>
+              Total Volume in USD:
+            </Typography>
+            <Typography className={styles.listContentDesc}>
+              {parseFloat(data.volumeUSD).toFixed(5)}
+            </Typography>
           </ListItem>
         </List>
       ) : (

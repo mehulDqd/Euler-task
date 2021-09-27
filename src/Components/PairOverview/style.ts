@@ -1,12 +1,23 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { Theme, makeStyles } from "@material-ui/core/styles";
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme: Theme) => ({
   listContent: {
     fontSize: "14px",
+    flexWrap: "wrap",
   },
   listContentTitle: {
-    width: "30%",
+    width: "100%",
     fontWeight: 600,
+    display: "block",
+    [theme.breakpoints.up("md")]: {
+      width: "30%",
+    },
+  },
+  listContentDesc: {
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "70%",
+    },
   },
   loadingContainer: {
     display: "flex",
@@ -14,5 +25,6 @@ export const useStyles = makeStyles(() => ({
     justifyContent: "center",
     width: "100%",
     height: "360px",
+    flexWrap: "wrap",
   },
 }));
