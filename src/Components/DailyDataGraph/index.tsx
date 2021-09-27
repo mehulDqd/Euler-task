@@ -8,15 +8,19 @@ import {
   YAxis,
   ResponsiveContainer,
   Area,
+  CartesianGrid,
 } from "recharts";
 import moment from "moment";
 import { GraphData } from "../../Types/graphData.interface";
+import { useStyles } from "./style";
 
 interface Props {
   data: Array<GraphData>;
 }
 
 const DailyDataGraph: React.FC<Props> = ({ data }) => {
+  const styles = useStyles();
+
   const graphData = useMemo(
     () =>
       data
@@ -34,11 +38,10 @@ const DailyDataGraph: React.FC<Props> = ({ data }) => {
   );
 
   return (
-    <Box>
-      <ResponsiveContainer width="100%" height={400}>
+    <Box className={styles.container}>
+      <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           width={500}
-          height={300}
           data={graphData}
           margin={{
             top: 5,
@@ -47,8 +50,9 @@ const DailyDataGraph: React.FC<Props> = ({ data }) => {
             bottom: 5,
           }}
         >
+          <CartesianGrid strokeDasharray="3" vertical={false} />
           <XAxis dataKey="name" tick={{ fontSize: 12 }} />
-          <YAxis tick={{ fontSize: 12 }} />
+          <YAxis axisLine={false} tick={{ fontSize: 12 }} />
           <Tooltip />
           <Area
             type="monotone"
