@@ -10,6 +10,7 @@ import { Route, Trade } from "@uniswap/sdk";
 import { debounce } from "lodash";
 import SwapInformation from "../SwapInformation";
 import { PricingData } from "../../Types/SwapCard.interface";
+import { User } from "../../Types/user.interface";
 import { getPricingData, swapTokens } from "../../Utils/swapTransaction";
 import { handleValidation } from "../../Utils/validation";
 import { getDataDelayTimer } from "../../constants";
@@ -28,7 +29,8 @@ const SwapCard: React.FC = () => {
   const { user, getUserBalance } = useContext(UserContext) as ContextType;
 
   const handleChange = async (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    user: User
   ) => {
     setAmount(e.target.value);
     const isError = handleValidation(e.target.value, user.ethBalance);
@@ -70,7 +72,7 @@ const SwapCard: React.FC = () => {
               inputProps={{ min: 0 }}
               error={error}
               helperText={errorText}
-              onChange={getData}
+              onChange={(e) => getData(e, user)}
               disabled={!user.address}
             />
             <Button
