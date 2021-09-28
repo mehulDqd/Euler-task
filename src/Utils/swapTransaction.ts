@@ -13,6 +13,7 @@ import { ethers } from "ethers";
 import { daiContractAddress, pairAddress, networkId } from "../constants";
 import routerABI from "../ABI/UniswapRouter.json";
 import { ExternalProvider, JsonRpcFetchFunc } from "@ethersproject/providers";
+import { Signer } from "@ethersproject/abstract-signer";
 
 declare global {
   interface Window {
@@ -20,10 +21,18 @@ declare global {
   }
 }
 
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-const signer = provider.getSigner();
-
-const DAI = new Token(networkId, daiContractAddress, 18);
+let provider: any;
+let DAI: Token;
+let signer: Signer;
+try {
+  provider = new ethers.providers.Web3Provider(window.ethereum);
+  signer = provider.getSigner();
+  DAI = new Token(networkId, daiContractAddress, 18);
+  localStorage.setItem("MetamaskError", "false");
+} catch (error) {
+  console.log(error);
+  localStorage.setItem("MetamaskError", "true");
+}
 
 export const getPricingData = async (amount: string) => {
   const pair = await Fetcher.fetchPairData(DAI, WETH[DAI.chainId]);

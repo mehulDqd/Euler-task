@@ -2,7 +2,14 @@ import { ethers } from "ethers";
 import ERC20ABI from "../ABI/ERC20.json";
 import { numberFromWei } from "./tokenConversions";
 
-const provider = new ethers.providers.Web3Provider(window.ethereum);
+let provider: any;
+try {
+  provider = new ethers.providers.Web3Provider(window.ethereum);
+  localStorage.setItem("MetamaskError", "false");
+} catch (error) {
+  console.log(error);
+  localStorage.setItem("MetamaskError", "true");
+}
 
 export const getUserTokenBalance = async (
   userAddress: string,

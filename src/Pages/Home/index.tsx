@@ -4,6 +4,7 @@ import { UserContext, ContextType } from "../../Context";
 import Dashboard from "../../Container/Dashboard";
 import Header from "../../Components/Header";
 import { useStyles } from "./style";
+import ErrorModal from "../../Components/ErrorDialog";
 
 const Home = () => {
   const { user } = useContext(UserContext) as ContextType;
@@ -12,6 +13,7 @@ const Home = () => {
     <Box className={styles.homePage}>
       <Header />
       <Dashboard />
+      <ErrorModal />
     </Box>
   );
 };
